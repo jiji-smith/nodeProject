@@ -4,7 +4,7 @@ const fs = require('fs');
 
 // 계획
 // 1. 사용자가 원하는 폴더의 이름을 받아온다
-const folder = process.argv;
+const folder = process.argv[2];
 console.log(folder);
 const workingDir = path.join(os.homedir(), 'pictures', folder);
 if (!folder || !fs.existsSync(workingDir)) {
@@ -29,7 +29,7 @@ fs.promises
 .then(processFiles)
 .catch(console.log);
 
-//돌아서 읽은 파일들을 각각에 폴더에 집어 넣는작업
+//돌아서 읽은 파일들을 각각에 폴더에 집어 넣는작업 -- move function은 따로 만들어줌 (file, targetDir)로
 function processFiles(files) {
     files.forEach((file) => {
         if (isVideoFile(file)) {
